@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study2 Ambiguous</title>
+  <style>
+
+    .page { display: none; }
+    .active { display: block; }
+    .start-btn {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #0071c2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .start-btn:hover { background-color: #005fa3; }
+
+    .back-btn {
+      margin-bottom: 20px;
+      padding: 8px 16px;
+      font-size: 16px;
+      background-color: #ccc;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background-color: #aaa;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f2f2;
+      padding: 30px;
+      color: #222;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hotel {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .slider-container {
+      flex: none;
+      width: 300px;
+    }
+
+    .image-slider {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+
+    .slider-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .image-slider button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.4);
+      color: white;
+      border: none;
+      font-size: 24px;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      z-index: 2;
+    }
+
+    .image-slider .prev { left: 10px; }
+    .image-slider .next { right: 10px; }
+    .image-slider button:hover { background-color: rgba(0,0,0,0.6); }
+
+    .info-container {
+      display: flex;
+      flex: 1;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: 20px;
+      height: 300px;
+    }
+
+    .info-center, .info-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 290px;
+    }
+
+    .info-center {
+      flex-grow: 1;
+      padding: 10px 0;
+      gap: 4px;
+    }
+
+    .hotel-name {
+      font-size: 26px;
+      font-weight: bold;
+      color: #003580;
+    }
+
+    .room-type {
+      font-size: 22px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .location,
+    .distance,
+    .amenities {
+      font-size: 15px;
+      color: #555;
+    }
+
+    .scarcity,
+    .booked {
+      font-size: 20px;
+      font-weight: bolder;
+      color: #c40000;
+      background-color: #f8d3d3;
+      padding: 6px 10px;
+      border-radius: 6px;
+      width: fit-content;
+    }
+
+    .rating-box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .rating {
+      background-color: #003580;
+      color: white;
+      font-size: 16px;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .reviews {
+      font-size: 15px;
+      color: #666;
+    }
+
+    .price-box {
+      text-align: right;
+    }
+
+    .check-dates {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #008009;
+    }
+
+    .reserve-btn {
+      margin-top: 10px;
+      width: 120px;
+      height: 40px;
+      background-color: #0071c2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .reserve-btn:hover {
+      background-color: #005fa3;
+    }
+
+    .booking-alert {
+        font-size: 16px;
+        font-weight: bold;
+        color: #d7263d;
+        background-color: #ffe6e6;
+        padding: 6px 10px;
+        border-radius: 6px;
+        animation: fadeOut 1.5s ease-in-out 1 forwards;
+    }
+
+/* fade-out 애니메이션 정의 */
+    @keyframes fadeOut {
+        0%   { opacity: 1; }
+        70%  { opacity: 1; }
+        100% { opacity: 0; display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .hotel {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .slider-container {
+        width: 100%;
+        height: auto;
+      }
+
+      .image-slider {
+        height: 200px;
+      }
+
+      .info-container {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .info-center,
+      .info-right {
+        width: 100%;
+        height: auto;
+      }
+
+      .reserve-btn {
+        width: 100%;
+      }
+
+      .price-box {
+        text-align: left;
+      }
+
+      .rating-box {
+        align-items: flex-start;
+      }
+  </style>
+</head>
+<body>
+
+  <div id="scenario-page" class="page active">
+    <h2 style="color:#003580;">Scenario</h2>
+    <p style="font-size: 18px;">
+      Imagine you are planning a 5-day vacation to Bangkok, Thailand in September.<br>
+      While browsing various booking websites, you come across a hotel that seems to match your budget and preferences.
+      </p>
+      <p style="font-size: 18px;">
+      As you view the details, you find that <strong><u>only a few rooms are available, and this number updates in real time.</u></strong>
+      </p>
+      <p style="font-size: 18px;">
+      You also notice that the hotel has <strong><u>already been booked over 30 times</u></strong>, suggesting that it is quite popular.
+      </p>
+    <br>
+    <button class="start-btn">Next</button>
+  </div>
+
+  <div id="stimulus-page" class="page">
+    <button class="back-btn">← Back</button>
+    <h2 style="color:#003580; text-align: center;">Book Your Room!</h2>
+
+    <div class="container">
+      <div class="hotel">
+
+        <div class="slider-container">
+          <div class="image-slider">
+            <img class="slider-image" src="" alt="Hotel Image">
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+          </div>
+        </div>
+
+        <div class="info-center">
+          <div class="hotel-name">The Bangkok Hotel Sukhumvit</div>
+          <div class="location">Wattana, Bangkok</div>
+          <div class="distance">2 km from city center</div>
+          <div class="room-type">Deluxe King Room</div>
+          <div class="amenities">Amenities: Free Wi-Fi, Pool, Spa, Fitness center</div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="scarcity rooms-left">Rooms Left: 4</div>
+            <div class="booking-alert" style="display:none;">Somebody Just Booked!</div>
+          </div>
+          <div class="booked purchases">30+ Booked</div>
+        </div>
+
+        <div class="info-right">
+          <div class="rating-box">
+            <span class="rating">⭐ 9.4 - Excellent</span>
+            <span class="reviews">(212 reviews)</span>
+          </div>
+          <div class="price-box">
+            <div class="check-dates">Check-in: Sep 5<br>Check-out: Sep 9</div>
+            <div class="price">$380 / night</div>
+            <button class="reserve-btn">Book</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const startBtn = document.querySelector('.start-btn');
+      const backBtn = document.querySelector('.back-btn');
+      const prevBtn = document.querySelector('.prev');
+      const nextBtn = document.querySelector('.next');
+
+      const scenarioPage = document.getElementById("scenario-page");
+      const stimulusPage = document.getElementById("stimulus-page");
+
+      startBtn.addEventListener("click", goToStimulus);
+      backBtn.addEventListener("click", goToScenario);
+      prevBtn.addEventListener("click", prevImage);
+      nextBtn.addEventListener("click", nextImage);
+
+      function goToStimulus() {
+        scenarioPage.classList.remove("active");
+        stimulusPage.classList.add("active");
+        updateRoomCount(0);
+      }
+
+      function goToScenario() {
+        stimulusPage.classList.remove("active");
+        scenarioPage.classList.add("active");
+      }
+
+      const imagePaths = [
+        "https://cf.bstatic.com/xdata/images/hotel/max1024x768/321354367.jpg?k=7bbf3d7c0bb58231937a35bcdb8b7e0e2dba3179583b7e85437d72e4b3343164&o=&hp=1",
+        "https://cf.bstatic.com/xdata/images/hotel/max1024x768/321354257.jpg?k=419027b1b400a15ba95115915abc593580efa352350ed789ce97725faf767f80&o=&hp=1",
+        "https://cf.bstatic.com/xdata/images/hotel/max1024x768/612283721.jpg?k=fa209a270765f2018ea932251b905198d62b5e9d07cadfb466b8fdc0a0a8a354&o=&hp=1"
+      ];
+
+      let currentImageIndex = 0;
+      const sliderImage = document.querySelector('.slider-image');
+
+      function showImage(index) {
+        sliderImage.src = imagePaths[index];
+      }
+
+      function prevImage() {
+        currentImageIndex = (currentImageIndex - 1 + imagePaths.length) % imagePaths.length;
+        showImage(currentImageIndex);
+      }
+
+      function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % imagePaths.length;
+        showImage(currentImageIndex);
+      }
+
+      showImage(currentImageIndex);
+
+      const roomsLeftElem = document.querySelector('.rooms-left');
+      const roomStates = [4, 3, 2];
+      const timeDelays = [4000, 5000];
+
+      function updateRoomCount(index) {
+         if (index >= roomStates.length) return;
+
+        const roomsLeft = roomStates[index];
+        const oldCount = parseInt(roomsLeftElem.textContent.match(/\d+/)[0]);
+        const alertElem = document.querySelector('.booking-alert');
+
+        if (roomsLeft !== oldCount) {
+            // 텍스트 갱신
+            roomsLeftElem.textContent = 'Rooms Left: ' + roomsLeft;
+
+            // 메시지 표시
+            alertElem.style.display = 'inline-block';
+            alertElem.style.opacity = 1;
+
+            // 1.5초 후 메시지 감추기
+            setTimeout(() => {
+            alertElem.style.display = 'none';
+            }, 1500);
+        }
+
+        if (index < timeDelays.length) {
+            setTimeout(() => updateRoomCount(index + 1), timeDelays[index]);
+        }
+     }
+
+    });
+  </script>
+
+</body>
+</html>
