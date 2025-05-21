@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Study2 Ambiguous</title>
   <style>
 
     .page { display: none; }
@@ -260,24 +259,24 @@
 <body>
 
   <div id="scenario-page" class="page active">
-    <h2 style="color:#003580;">Scenario</h2>
+    <h2 style="color:#003580;">시나리오</h2>
     <p style="font-size: 18px;">
-      Imagine you are planning a 5-day vacation to Bangkok, Thailand in September.<br>
-      While browsing various booking websites, you come across a hotel that seems to match your budget and preferences.
+      당신은 현재 태국 방콕으로의 여행을 계획하고 있습니다.<br>
+      호텔 예약 사이트를 통해 적당한 숙소를 알아보던 중 당신의 취향에 맞고 예산에도 적합한 호텔을 찾았습니다.
       </p>
       <p style="font-size: 18px;">
-      As you view the details, you find that <strong><u>only a few rooms are available, and this number updates in real time.</u></strong>
+      보다 자세한 정보를 확인하여 이 호텔을 예약할지 고려하고 있으나,<br><strong><u>호텔에는 한정된 수의 객실만 남아 있고 그 수는 실시간으로 변하고 있습니다.</u></strong>
       </p>
       <p style="font-size: 18px;">
-      You also notice that the hotel has <strong><u>already been booked over 30 times</u></strong>, suggesting that it is quite popular.
+      또한 이 호텔은 <strong><u>벌써 30회 가 넘게 예약되어</u></strong>, 많은 사람들이 선호하는 호텔임을 알 수 있습니다.
       </p>
     <br>
-    <button class="start-btn">Next</button>
+    <button class="start-btn">다음</button>
   </div>
 
   <div id="stimulus-page" class="page">
-    <button class="back-btn">← Back</button>
-    <h2 style="color:#003580; text-align: center;">Book Your Room!</h2>
+    <button class="back-btn">← 뒤로</button>
+    <h2 style="color:#003580; text-align: center;">지금 바로 예약하세요!</h2>
 
     <div class="container">
       <div class="hotel">
@@ -291,27 +290,27 @@
         </div>
 
         <div class="info-center">
-          <div class="hotel-name">The Bangkok Hotel Sukhumvit</div>
-          <div class="location">Wattana, Bangkok</div>
-          <div class="distance">2 km from city center</div>
-          <div class="room-type">Deluxe King Room</div>
-          <div class="amenities">Amenities: Free Wi-Fi, Pool, Spa, Fitness center</div>
+          <div class="hotel-name">더 방콕 호텔 수쿰빗</div>
+          <div class="location">와타나, 방콕</div>
+          <div class="distance">도심으로부터 약 2km 거리</div>
+          <div class="room-type">디럭스 킹 룸</div>
+          <div class="amenities">어메니티: 무료 와이파이, 수영장, 스파, 피트니스 센터</div>
           <div style="display: flex; align-items: center; gap: 10px;">
-            <div class="scarcity rooms-left">Rooms Left: 4</div>
-            <div class="booking-alert" style="display:none;">Somebody Just Booked!</div>
+            <div class="scarcity rooms-left">남은 객실 수: 4</div>
+            <div class="booking-alert" style="display:none;">누군가가 예약했습니다!</div>
           </div>
-          <div class="booked purchases">30+ Booked</div>
+          <div class="booked purchases">30+ 예약됨</div>
         </div>
 
         <div class="info-right">
           <div class="rating-box">
-            <span class="rating">⭐ 9.4 - Excellent</span>
-            <span class="reviews">(212 reviews)</span>
+            <span class="rating">⭐ 9.4 - 매우 우수</span>
+            <span class="reviews">(리뷰 212 개)</span>
           </div>
           <div class="price-box">
-            <div class="check-dates">Check-in: Sep 5<br>Check-out: Sep 9</div>
-            <div class="price">$380 / night</div>
-            <button class="reserve-btn">Book</button>
+            <div class="check-dates">체크인: 9월 5일<br>체크아웃: 9월 9일</div>
+            <div class="price">277,000원 / 1박</div>
+            <button class="reserve-btn">예약하기</button>
           </div>
         </div>
 
@@ -383,7 +382,7 @@
 
         if (roomsLeft !== oldCount) {
             // 텍스트 갱신
-            roomsLeftElem.textContent = 'Rooms Left: ' + roomsLeft;
+            roomsLeftElem.textContent = '남은 객실 수: ' + roomsLeft;
 
             // 메시지 표시
             alertElem.style.display = 'inline-block';
